@@ -40,28 +40,29 @@
 
 ```
 kanflow/
-├── client/                 # Frontend React application
+├── client/                          # Frontend React application
+│   ├── public/                      # Static assets
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   │   ├── Board.jsx   # Main kanban board
-│   │   │   ├── Column.jsx  # Task columns (To Do, In Progress, Done)
-│   │   │   ├── TaskCard.jsx # Individual task cards
-│   │   │   ├── AddTaskModal.jsx # Task creation modal
-│   │   │   ├── EditTaskModal.jsx # Task editing modal
-│   │   │   └── Footer.jsx  # Application footer
-│   │   ├── services/       # API integration services
-│   │   │   ├── api.js      # Base API configuration
-│   │   │   ├── taskService.js # Task CRUD operations
-│   │   │   └── boardService.js # Board management
-│   │   ├── styles/         # Component-specific CSS
-│   │   └── App.jsx         # Main application component
-│   ├── public/             # Static assets
-│   └── package.json        # Frontend dependencies
-└── server/                 # Backend Node.js application
-    ├── models/             # MongoDB data models
-    ├── routes/             # API route handlers
-    ├── middleware/         # Custom middleware
-    └── server.js           # Express server configuration
+│   │   ├── components/              # Reusable UI components
+│   │   │   ├── Board.jsx            # Main kanban board
+│   │   │   ├── Column.jsx           # Task columns (To Do, In Progress, Done)
+│   │   │   ├── TaskCard.jsx         # Individual task cards
+│   │   │   ├── AddTaskModal.jsx     # Task creation modal
+│   │   │   ├── EditTaskModal.jsx    # Task editing modal
+│   │   │   └── Footer.jsx           # Application footer
+│   │   ├── services/                # API integration services
+│   │   │   ├── api.js               # Base API configuration
+│   │   │   ├── taskService.js       # Task CRUD operations
+│   │   │   └── boardService.js      # Board management
+│   │   ├── styles/                  # Component-specific CSS
+│   │   └── App.jsx                  # Main application component
+│   └── package.json                 # Frontend dependencies
+└── server/                          # Backend Node.js application
+    ├── models/                      # MongoDB data models
+    ├── routes/                      # API route handlers
+    ├── middleware/                  # Custom middleware
+    └── server.js                    # Express server configuration
+
 ```
 
 ## 🚀 Quick Start
