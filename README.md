@@ -198,8 +198,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Your Name**
-- LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/skaamir10)
-- GitHub: [@yourusername](https://github.com/Aamir017)
+- LinkedIn: [skaamir10](https://linkedin.com/in/skaamir10)
+- GitHub: [Aamir017](https://github.com/Aamir017)
 - Email: aamir.sk.dev@gmail.com
 
 ## 🙏 Acknowledgments
