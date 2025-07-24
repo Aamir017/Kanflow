@@ -2,8 +2,6 @@
 
 **Kanflow** is a modern, intuitive Kanban-style task management application built with the MERN stack. Streamline your workflow with drag-and-drop functionality, task filtering, and real-time collaboration features.
 
-![Kanflow Demo](https://via.placeholder.com/800x400/4F46E5/FFFFFF?text=Kanflow+Dashboard)
-
 ## ✨ Features
 
 ### 🎯 Core Functionality
