@@ -1,7 +1,5 @@
 # MERN Project Setup Instructions
 
-## Issue Analysis
-Your authentication is not working because MongoDB is not running. Here's how to fix it:
 
 ## Step 1: Install MongoDB (Choose one option)
 
