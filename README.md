@@ -32,6 +32,11 @@
 - **Express.js** - Web application framework
 - **MongoDB** - NoSQL database for data persistence
 - **Mongoose** - MongoDB object modeling
+![React](https://img.shields.io/badge/Frontend-React-blue)
+![Node.js](https://img.shields.io/badge/Backend-Node.js-green)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
+
 
 ## 📁 Project Structure
 
