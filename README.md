@@ -21,11 +21,12 @@
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **React 18** - Modern React with hooks and functional components
-- **Vite** - Lightning-fast build tool and dev server
-- **React Beautiful DnD** - Smooth drag-and-drop functionality
-- **React Toastify** - Elegant toast notifications
-- **CSS3** - Custom styling with modern CSS features
+![React](https://img.shields.io/badge/React-18-blue)
+![Vite](https://img.shields.io/badge/Vite-Lightning--fast%20build-purple)
+![DnD](https://img.shields.io/badge/Drag--and--Drop-React%20Beautiful%20DnD-9cf)
+![Toastify](https://img.shields.io/badge/Notifications-React%20Toastify-orange)
+![CSS3](https://img.shields.io/badge/Styling-CSS3-blue)
+
 
 ### Backend
 ![React](https://img.shields.io/badge/Frontend-React-blue)
