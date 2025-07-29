@@ -197,7 +197,6 @@ cd server
 
 **Your Name**
 - LinkedIn: [skaamir10](https://linkedin.com/in/skaamir10)
-- GitHub: [Aamir017](https://github.com/Aamir017)
 - Email: aamir.sk.dev@gmail.com
 
 ## 🙏 Acknowledgments
