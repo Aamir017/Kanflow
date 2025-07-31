@@ -2,3 +2,4 @@
 terraform/terraform.tfvars
 terraform/ssh
 /terraform/ssh
+.terraform/
