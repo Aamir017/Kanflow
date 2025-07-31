@@ -1,0 +1,47 @@
+---
+- name: Update and upgrade APT packages
+  apt:
+    update_cache: yes
+    upgrade: dist
+    force_apt_get: yes
+  environment:
+    DEBIAN_FRONTEND: noninteractive
+  become: true
+
+- name: Install base packages
+  apt:
+    name:
+      - git
+      - curl
+      - unzip
+      - python3
+      - python3-pip
+      - software-properties-common
+    state: present
+  become: true
+
+- name: Check if Node.js binary exists
+  stat:
+    path: /usr/bin/node
+  register: nodejs_bin
+
+- name: Add NodeSource repository for Node.js 20
+  shell: |
+    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+  args:
+    executable: /bin/bash
+  become: true
+  when: not nodejs_bin.stat.exists
+
+- name: Install Node.js
+  apt:
+    name: nodejs
+    state: present
+  become: true
+  when: not nodejs_bin.stat.exists
+
+- name: Verify Node.js and npm
+  shell: node -v && npm -v
+  register: node_version_output
+  changed_when: false
+  become: true

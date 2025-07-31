@@ -1,0 +1,10 @@
+---
+- name: Setup Kanflow DevOps Environment
+  hosts: kanflow
+  become: true
+  roles:
+    - common
+    - docker
+    - kubectl
+    - helm
+    - jenkins

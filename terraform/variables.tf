@@ -8,7 +8,7 @@ variable "instance_type" {
 
 variable "ami_id" {
   description = "Amazon Machine Image ID for Ubuntu"
-  default     = "ami-0557a15b87f6559cf" # Update if needed for your region
+  default     = "ami-020cba7c55df1f615" # Update if needed for your region
 }
 
 variable "key_name" {

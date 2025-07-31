@@ -1,0 +1,46 @@
+---
+- name: Install prerequisites
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg
+    - lsb-release
+  become: true
+
+- name: Add Docker GPG key manually (only if not already added)
+  shell: |
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  args:
+    executable: /bin/bash
+    creates: /usr/share/keyrings/docker-archive-keyring.gpg  # ✅ prevents re-running
+  become: true
+
+- name: Add Docker APT repository with signed-by (idempotent)
+  apt_repository:
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release | lower }} stable"
+    state: present
+    filename: docker
+  become: true
+
+- name: Install Docker packages
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Enable and start Docker service
+  systemd:
+    name: docker
+    enabled: yes
+    state: started
+  become: true
+

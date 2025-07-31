@@ -1,0 +1,17 @@
+- name: Download kubectl binary via shell
+  shell: |
+    curl -LO "https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl" && \
+    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
+    rm -f kubectl
+  args:
+    executable: /bin/bash
+  become: true
+
+- name: Verify kubectl version
+  command: kubectl version --client
+  register: kubectl_output
+  changed_when: false
+
+- name: Show kubectl version
+  debug:
+    var: kubectl_output.stdout
