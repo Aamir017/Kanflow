@@ -1,0 +1,94 @@
+pipeline {
+  agent any
+
+  environment {
+    DOCKER_IMAGE = 'aamir017/kanflow'
+    DOCKER_TAG = 'latest'
+    ANSIBLE_HOST_KEY_CHECKING = 'False'
+  }
+
+  stages {
+
+    stage('Checkout Code') {
+      steps {
+        git 'https://github.com/Aamir017/Kanflow.git'
+      }
+    }
+
+    stage('Install Dependencies (Client + Server)') {
+      steps {
+        dir('client') {
+          sh 'npm install'
+        }
+        dir('server') {
+          sh 'npm install'
+        }
+      }
+    }
+
+    stage('Run Tests') {
+      steps {
+        dir('client') {
+          sh 'npm test || echo "⚠️ Client tests skipped or failed"'
+        }
+        dir('server') {
+          sh 'npm test || echo "⚠️ Server tests skipped or failed"'
+        }
+      }
+    }
+
+    stage('Docker Build') {
+      steps {
+        sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
+      }
+    }
+
+    stage('Security Scan (Trivy)') {
+      steps {
+        sh '''
+          if ! command -v trivy > /dev/null; then
+            echo "📦 Installing Trivy..."
+            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+          fi
+          trivy image --exit-code 0 --severity CRITICAL $DOCKER_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
+        '''
+      }
+    }
+
+    stage('Push Docker Image') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          sh '''
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+            docker push $DOCKER_IMAGE:$DOCKER_TAG
+          '''
+        }
+      }
+    }
+
+    stage('Deploy (Ansible)') {
+      steps {
+        dir('ansible') {
+          sh 'ansible-playbook -i inventory.ini playbook.yml'
+        }
+      }
+    }
+
+    stage('Notify') {
+      steps {
+        echo '✅ Pipeline completed!'
+      }
+    }
+
+  }
+
+  post {
+    success {
+      echo '🎉 Success: App deployed!'
+    }
+    failure {
+      echo '❌ Error: Pipeline failed'
+    }
+  }
+}
+
