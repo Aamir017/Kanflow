@@ -1,5 +1,5 @@
 # Stage 1: Build frontend
-FROM node:18 AS frontend-builder
+FROM node:current-alpine AS frontend-builder
 
 WORKDIR /app/client
 
@@ -10,7 +10,7 @@ COPY client ./
 RUN npm run build
 
 # Stage 2: Backend
-FROM node:18
+FROM node:current-alpine
 
 WORKDIR /app
 
@@ -22,7 +22,7 @@ COPY server ./server
 
 # Copy frontend build from stage 1
 # Frontend build stage
-FROM node:18-alpine as frontend-builder
+FROM node:current-alpine AS frontend-builder
 
 WORKDIR /app/client
 
@@ -34,7 +34,7 @@ COPY client/ ./
 RUN npm run build
 
 # Backend stage
-FROM node:18-alpine as backend
+FROM node:current-alpine AS backend
 
 WORKDIR /app/server
 
