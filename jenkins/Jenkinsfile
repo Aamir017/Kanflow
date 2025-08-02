@@ -18,10 +18,13 @@ pipeline {
     stage('Install Dependencies (Client + Server)') {
       steps {
         dir('client') {
-          sh 'npm install'
+          sh 'npm install --verbose'
+        }
+        script {
+	      echo 'installing server dependencies'
         }
         dir('server') {
-          sh 'npm install'
+          sh 'npm install --verbose'
         }
       }
     }
