@@ -32,14 +32,28 @@ pipeline {
       }
     }
 
-    
+    stage('Deploy with Ansible') {
+      steps {
+        sh '''
+          echo "🚀 Running Ansible playbook..."
+
+          cd Kanflow/ansible
+          
+          if ! command -v ansible-playbook > /dev/null; then
+            echo "❌ Ansible not found. Please install Ansible on Jenkins agent."
+            exit 1
+          fi
+
+          ansible-playbook -i inventory.ini playbook.yml
+        '''
+      }
+    }
 
     stage('Notify') {
       steps {
         echo '✅ Pipeline completed!'
       }
     }
-
   }
 
   post {
