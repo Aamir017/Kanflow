@@ -5,7 +5,6 @@ pipeline {
     DOCKER_IMAGE = 'aamir017/kanflow-backend'
     DOCKER_TAG = 'latest'
     ANSIBLE_HOST_KEY_CHECKING = 'False'
-    PATH = "$HOME/.local/bin:$PATH"
   }
 
   stages {
@@ -28,25 +27,23 @@ pipeline {
           fi
 
           echo "🔍 Scanning Docker image for CRITICAL vulnerabilities..."
-          trivy image --exit-code 0 --severity CRITICAL $DOCKER_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
+          ~/.local/bin/trivy image --exit-code 0 --severity CRITICAL $DOCKER_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
         '''
       }
     }
 
-    stage('Deploy (Ansible via pipx)') {
+    stage('Deploy (Ansible via Docker)') {
+      agent {
+        docker {
+          image 'willhallonline/ansible:latest'
+          args '-u root' // In case you need root to access any files
+        }
+      }
       steps {
         sh '''
-          echo "📦 Installing pipx (isolated Python apps)..."
-          python3 -m ensurepip --upgrade || true
-          python3 -m pip install --user pipx
-          pipx ensurepath
-
-          echo "📦 Installing Ansible via pipx..."
-          pipx install ansible --force
-
           echo "🚀 Running Ansible playbook..."
           cd ansible
-          ~/.local/pipx/venvs/ansible/bin/ansible-playbook -i inventory.ini playbook.yml
+          ansible-playbook -i inventory.ini playbook.yml
         '''
       }
     }
