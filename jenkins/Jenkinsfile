@@ -5,6 +5,7 @@ pipeline {
     DOCKER_IMAGE = 'aamir017/kanflow-backend'
     DOCKER_TAG = 'latest'
     ANSIBLE_HOST_KEY_CHECKING = 'False'
+    TRIVY_PATH = "${env.HOME}/.local/bin"
   }
 
   stages {
@@ -15,14 +16,24 @@ pipeline {
       }
     }
 
+    stage('Build Docker Image') {
+      steps {
+        sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
+      }
+    }
+
     stage('Security Scan (Trivy)') {
       steps {
         sh '''
+          mkdir -p ~/.local/bin
+          export PATH="$HOME/.local/bin:$PATH"
+
           if ! command -v trivy > /dev/null; then
             echo "📦 Installing Trivy..."
-            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+            curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b ~/.local/bin
           fi
-          trivy image --exit-code 0 --severity CRITICAL $DOCKER_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
+
+          ~/.local/bin/trivy image --exit-code 0 --severity CRITICAL $DOCKER_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
         '''
       }
     }
