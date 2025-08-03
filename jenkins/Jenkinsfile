@@ -37,7 +37,7 @@ pipeline {
         sh '''
           echo "🚀 Running Ansible playbook..."
 
-          cd Kanflow/ansible
+          cd ansible
           
           if ! command -v ansible-playbook > /dev/null; then
             echo "❌ Ansible not found. Please install Ansible on Jenkins agent."
