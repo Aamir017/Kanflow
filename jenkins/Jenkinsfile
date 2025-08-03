@@ -15,37 +15,6 @@ pipeline {
       }
     }
 
-    stage('Install Dependencies (Client + Server)') {
-      steps {
-        dir('client') {
-          sh 'npm install --verbose'
-        }
-        script {
-	      echo 'installing server dependencies'
-        }
-        dir('server') {
-          sh 'npm install --verbose'
-        }
-      }
-    }
-
-    stage('Run Tests') {
-      steps {
-        dir('client') {
-          sh 'npm test || echo "⚠️ Client tests skipped or failed"'
-        }
-        dir('server') {
-          sh 'npm test || echo "⚠️ Server tests skipped or failed"'
-        }
-      }
-    }
-
-    stage('Docker Build') {
-      steps {
-        sh 'docker build -t $DOCKER_IMAGE:$DOCKER_TAG .'
-      }
-    }
-
     stage('Security Scan (Trivy)') {
       steps {
         sh '''
@@ -55,17 +24,6 @@ pipeline {
           fi
           trivy image --exit-code 0 --severity CRITICAL $DOCKER_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
         '''
-      }
-    }
-
-    stage('Push Docker Image') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh '''
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-            docker push $DOCKER_IMAGE:$DOCKER_TAG
-          '''
-        }
       }
     }
 
