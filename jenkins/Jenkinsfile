@@ -35,10 +35,10 @@ pipeline {
     stage('Deploy (Ansible inside Docker)') {
       steps {
         script {
-          docker.image('willhallonline/ansible:latest').inside {
+          docker.image('willhallonline/ansible:latest').inside("-v ${env.WORKSPACE}:/workspace") {
             sh '''
               echo "🚀 Running Ansible playbook..."
-              cd ansible
+              cd /workspace/ansible
               ansible-playbook -i inventory.ini playbook.yml
             '''
           }
