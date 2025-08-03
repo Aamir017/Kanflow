@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_IMAGE = 'aamir017/kanflow'
+    DOCKER_IMAGE = 'aamir017/kanflow-backend'
     DOCKER_TAG = 'latest'
     ANSIBLE_HOST_KEY_CHECKING = 'False'
   }
