@@ -18,16 +18,16 @@ pipeline {
     stage('Security Scan (Trivy)') {
       steps {
         sh '''
-          echo "📦 Setting up Trivy..."
+          echo "🔎 Setting up Trivy..."
           mkdir -p ~/.local/bin
           export PATH="$HOME/.local/bin:$PATH"
 
           if ! command -v trivy > /dev/null; then
-            echo "🔧 Installing Trivy..."
+            echo "📦 Installing Trivy..."
             curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b ~/.local/bin
           fi
 
-          echo "🔍 Scanning Docker image with Trivy..."
+          echo "🔍 Scanning Docker image for CRITICAL vulnerabilities..."
           ~/.local/bin/trivy image --exit-code 0 --severity CRITICAL $DOCKER_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
         '''
       }
@@ -36,13 +36,16 @@ pipeline {
     stage('Deploy (Ansible)') {
       steps {
         sh '''
-          echo "📦 Setting up Ansible..."
-          python3 -m pip install --user ansible
-          export PATH="$HOME/.local/bin:$PATH"
+          echo "📦 Creating Python virtual environment..."
+          python3 -m venv venv
+
+          echo "📦 Installing Ansible in virtual environment..."
+          ./venv/bin/pip install --upgrade pip
+          ./venv/bin/pip install ansible
 
           echo "🚀 Running Ansible playbook..."
           cd ansible
-          ~/.local/bin/ansible-playbook -i inventory.ini playbook.yml
+          ../venv/bin/ansible-playbook -i inventory.ini playbook.yml
         '''
       }
     }
@@ -64,4 +67,3 @@ pipeline {
     }
   }
 }
-
