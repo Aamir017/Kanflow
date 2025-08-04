@@ -64,10 +64,10 @@ app.use('/api/columns', require('./routes/columns'));
 app.use('/api/tasks', require('./routes/tasks'));
 
 // Serve static frontend files
-app.use(express.static(path.join(__dirname, 'public')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+//app.use(express.static(path.join(__dirname, 'public')));
+//app.get('*', (req, res) => {
+ // res.sendFile(path.join(__dirname, 'public', 'index.html'));
+//});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
