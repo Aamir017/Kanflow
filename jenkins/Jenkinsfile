@@ -2,16 +2,41 @@ pipeline {
   agent any
 
   environment {
-    DOCKER_IMAGE = 'aamir017/kanflow-backend'
+    FRONTEND_IMAGE = 'aamir017/kanflow-frontend'
+    BACKEND_IMAGE = 'aamir017/kanflow-backend'
     DOCKER_TAG = 'latest'
     ANSIBLE_HOST_KEY_CHECKING = 'False'
   }
 
   stages {
-
     stage('Checkout Code') {
       steps {
         git branch: 'main', url: 'https://github.com/Aamir017/Kanflow.git'
+      }
+    }
+
+    stage('Build Docker Images') {
+      steps {
+        sh '''
+          echo "🐳 Building Docker images..."
+          docker build -t $FRONTEND_IMAGE:$DOCKER_TAG ./client
+          docker build -t $BACKEND_IMAGE:$DOCKER_TAG ./server
+        '''
+      }
+    }
+
+    stage('Push Docker Images') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+          sh '''
+            echo "📤 Logging in to Docker Hub..."
+            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+
+            echo "📦 Pushing images..."
+            docker push $FRONTEND_IMAGE:$DOCKER_TAG
+            docker push $BACKEND_IMAGE:$DOCKER_TAG
+          '''
+        }
       }
     }
 
@@ -26,23 +51,15 @@ pipeline {
             curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b ~/.local/bin
           fi
 
-          echo "🔍 Scanning Docker image for CRITICAL vulnerabilities..."
-          ~/.local/bin/trivy image --exit-code 0 --severity CRITICAL $DOCKER_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
+          echo "🔍 Scanning Backend Docker image..."
+          ~/.local/bin/trivy image --exit-code 0 --severity CRITICAL $BACKEND_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
+
+          echo "🔍 Scanning Frontend Docker image..."
+          ~/.local/bin/trivy image --exit-code 0 --severity CRITICAL $FRONTEND_IMAGE:$DOCKER_TAG || echo "⚠️ Vulnerabilities found"
         '''
       }
     }
 
-<<<<<<< HEAD
-  
-=======
-    stage('Deploy (Ansible)') {
-      steps {
-        dir('ansible') {
-          sh 'ansible-playbook -i inventory.ini playbook.yml'
-        }
-      }
-    }
->>>>>>> ca5f302 (local edit)
 
     stage('Notify') {
       steps {
