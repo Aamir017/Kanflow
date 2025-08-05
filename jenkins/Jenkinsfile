@@ -15,31 +15,6 @@ pipeline {
       }
     }
 
-    stage('Build Docker Images') {
-      steps {
-        sh '''
-          echo "🐳 Building Docker images..."
-          docker build -t $FRONTEND_IMAGE:$DOCKER_TAG ./client
-          docker build -t $BACKEND_IMAGE:$DOCKER_TAG ./server
-        '''
-      }
-    }
-
-    stage('Push Docker Images') {
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh '''
-            echo "📤 Logging in to Docker Hub..."
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-
-            echo "📦 Pushing images..."
-            docker push $FRONTEND_IMAGE:$DOCKER_TAG
-            docker push $BACKEND_IMAGE:$DOCKER_TAG
-          '''
-        }
-      }
-    }
-
     stage('Security Scan (Trivy)') {
       steps {
         sh '''
