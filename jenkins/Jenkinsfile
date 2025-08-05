@@ -32,7 +32,17 @@ pipeline {
       }
     }
 
+<<<<<<< HEAD
   
+=======
+    stage('Deploy (Ansible)') {
+      steps {
+        dir('ansible') {
+          sh 'ansible-playbook -i inventory.ini playbook.yml'
+        }
+      }
+    }
+>>>>>>> ca5f302 (local edit)
 
     stage('Notify') {
       steps {
