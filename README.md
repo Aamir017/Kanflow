@@ -279,7 +279,7 @@ Kanflow is equipped with a production-ready DevOps pipeline to automate the full
 
    * Installs dependencies
 
-* Runs linting & tests
+   * Runs linting & tests
 
    * Builds Docker images for frontend/backend
 
