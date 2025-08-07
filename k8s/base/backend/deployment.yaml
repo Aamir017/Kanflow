@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kanflow-backend
+  namespace: kanflow
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kanflow-backend
+  template:
+    metadata:
+      labels:
+        app: kanflow-backend
+    spec:
+      containers:
+        - name: backend
+          image: aamir017/kanflow-backend:latest
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: kanflow-backend-config
+            - secretRef:
+                name: kanflow-secrets

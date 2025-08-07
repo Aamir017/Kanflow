@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kanflow-frontend-config
+  namespace: kanflow
+data:
+  REACT_APP_API_URL: http://kanflow-backend-service

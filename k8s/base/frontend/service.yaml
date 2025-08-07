@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kanflow-frontend-service
+  namespace: kanflow
+spec:
+  selector:
+    app: kanflow-frontend
+  ports:
+    - port: 80
+      targetPort: 3000
+  type: ClusterIP

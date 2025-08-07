@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kanflow-frontend
+  namespace: kanflow
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kanflow-frontend
+  template:
+    metadata:
+      labels:
+        app: kanflow-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: aamir017/kanflow-frontend:latest
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: kanflow-frontend-config

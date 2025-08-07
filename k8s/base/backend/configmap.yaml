@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kanflow-backend-config
+  namespace: kanflow
+data:
+  DB_HOST: mongo-service.kanflow.svc.cluster.local
+  DB_PORT: "27017"
+  DB_NAME: kanflowdb
