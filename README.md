@@ -285,9 +285,6 @@ Kanflow is equipped with a production-ready DevOps pipeline to automate the full
 
    * Ingress and Secrets configured for service exposure
 
-![CI](https://img.shields.io/badge/Jenkins-Build-Passing?style=flat&logo=Jenkins&color=green)
-![Docker](https://img.shields.io/badge/Docker-Automated-blue?logo=docker)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-Deployed-blueviolet?logo=kubernetes)
 
 
 ## 🤝 Contributing
