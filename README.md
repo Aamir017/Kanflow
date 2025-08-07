@@ -27,14 +27,20 @@
 ![Vite](https://img.shields.io/badge/Vite-Lightning--fast%20build-purple)
 ![DnD](https://img.shields.io/badge/Drag--and--Drop-React%20Beautiful%20DnD-9cf)
 ![Toastify](https://img.shields.io/badge/Notifications-React%20Toastify-orange)
-![CSS3](https://img.shields.io/badge/Styling-CSS3-blue)
-
+![Tailwind](https://img.shields.io/badge/Styling-TailwindCSS-38B2AC)
 
 ### Backend
-![React](https://img.shields.io/badge/Frontend-React-blue)
 ![Node.js](https://img.shields.io/badge/Backend-Node.js-green)
+![Express](https://img.shields.io/badge/Framework-Express.js-lightgrey)
 ![MongoDB](https://img.shields.io/badge/Database-MongoDB-brightgreen)
-![Mongoose](https://img.shields.io/badge/ODM-Mongoose-orange)
+
+### DevOps & Deployment
+![Docker](https://img.shields.io/badge/Containerization-Docker-2496ED)
+![Kubernetes](https://img.shields.io/badge/Orchestration-Kubernetes-326CE5)
+![Jenkins](https://img.shields.io/badge/CI/CD-Jenkins-D24939)
+![Ansible](https://img.shields.io/badge/Provisioning-Ansible-EE0000)
+![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4)
+
 
 
 
