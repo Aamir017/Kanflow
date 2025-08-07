@@ -273,27 +273,27 @@ Kanflow is equipped with a production-ready DevOps pipeline to automate the full
 
 1. Code Push (GitHub)
 
-* Triggers Jenkins CI pipeline via webhook.
+   * Triggers Jenkins CI pipeline via webhook.
 
 2. Jenkins Pipeline
 
-* Installs dependencies
+   * Installs dependencies
 
 * Runs linting & tests
 
-* Builds Docker images for frontend/backend
+   * Builds Docker images for frontend/backend
 
-* Pushes images to Docker Hub
+   * Pushes images to Docker Hub
 
 3. Provisioning
 
-* Terraform spins up infrastructure on cloud (e.g., AWS)
+   * Terraform spins up infrastructure on cloud (e.g., AWS)
 
-* Ansible configures servers with Docker, Kubernetes, Helm, and Jenkins
+   * Ansible configures servers with Docker, Kubernetes, Helm, and Jenkins
 
 4. Deployment
 
-* Ingress and Secrets configured for service exposure
+   * Ingress and Secrets configured for service exposure
 
 ![CI](https://img.shields.io/badge/Jenkins-Build-Passing?style=flat&logo=Jenkins&color=green)
 ![Docker](https://img.shields.io/badge/Docker-Automated-blue?logo=docker)
