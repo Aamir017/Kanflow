@@ -255,6 +255,49 @@ cd server
 # Configure environment variables on your hosting platform
 # Deploy the server directory
 ```
+### 🔁 CI/CD & DevOps Pipeline
+Kanflow is equipped with a production-ready DevOps pipeline to automate the full application lifecycle — from code to deployment.
+
+### 🧩 Pipeline Components
+Tool	Role
+Jenkins	Continuous Integration / Deployment (CI/CD)
+Ansible	Configuration management and provisioning
+Docker	Containerization of frontend/backend apps
+Kubernetes	Container orchestration and scaling
+Helm	Kubernetes deployment templating
+Terraform	Infrastructure provisioning (IaC)
+
+
+## 🔄 Pipeline Flow
+
+1. Code Push (GitHub)
+
+* Triggers Jenkins CI pipeline via webhook.
+
+2. Jenkins Pipeline
+
+* Installs dependencies
+
+* Runs linting & tests
+
+* Builds Docker images for frontend/backend
+
+* Pushes images to Docker Hub
+
+3. Provisioning
+
+* Terraform spins up infrastructure on cloud (e.g., AWS)
+
+* Ansible configures servers with Docker, Kubernetes, Helm, and Jenkins
+
+4. Deployment
+
+* Ingress and Secrets configured for service exposure
+
+![CI](https://img.shields.io/badge/Jenkins-Build-Passing?style=flat&logo=Jenkins&color=green)
+![Docker](https://img.shields.io/badge/Docker-Automated-blue?logo=docker)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-Deployed-blueviolet?logo=kubernetes)
+
 
 ## 🤝 Contributing
 
