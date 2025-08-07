@@ -57,11 +57,83 @@ kanflow/
 │   │   ├── styles/                  # Component-specific CSS
 │   │   └── App.jsx                  # Main application component
 │   └── package.json                 # Frontend dependencies
-└── server/                          # Backend Node.js application
-    ├── models/                      # MongoDB data models
-    ├── routes/                      # API route handlers
-    ├── middleware/                  # Custom middleware
-    └── server.js                    # Express server configuration
+
+├── server/                          # Backend Node.js application
+│   ├── models/                      # MongoDB data models
+│   ├── routes/                      # API route handlers
+│   ├── middleware/                  # Custom middleware
+│   └── server.js                    # Express server configuration
+
+├── ansible/                         # Ansible configuration for provisioning
+│   ├── inventory.ini                # Inventory of servers
+│   ├── playbook.yml                 # Main Ansible playbook
+│   └── roles/                       # Ansible roles
+│       ├── common/                  # Common setup tasks
+│       │   ├── tasks/
+│       │   │   └── main.yml         # Common tasks
+│       │   └── vars/
+│       │       └── main.yml         # Common variables
+│       ├── docker/                  # Docker installation & setup
+│       │   ├── tasks/
+│       │   │   └── main.yml         # Docker tasks
+│       │   └── vars/
+│       │       └── main.yml         # Docker variables
+│       ├── helm/                    # Helm installation & charts
+│       │   ├── tasks/
+│       │   │   └── main.yml         # Helm tasks
+│       │   └── vars/
+│       │       └── main.yml         # Helm variables
+│       ├── jenkins/                 # Jenkins server setup
+│       │   ├── tasks/
+│       │   │   └── main.yml         # Jenkins tasks
+│       │   └── vars/
+│       │       └── main.yml         # Jenkins variables
+│       └── kubectl/                 # kubectl installation & setup
+│           ├── tasks/
+│           │   └── main.yml         # Kubectl tasks
+│           └── vars/
+│               └── main.yml         # Kubectl variables
+
+├── jenkins/                         # Jenkins automation
+│   ├── Jenkinsfile                  # CI/CD pipeline definition
+
+k8s/
+├── base/               # Base k8s manifests for different components
+│   ├── backend/        # Backend service k8s configs
+│   │   ├── configmap.yaml
+│   │   ├── deployment.yaml
+│   │   ├── kanflow-secrets.yaml
+│   │   └── service.yaml
+│   │
+│   ├── frontend/       # Frontend service k8s configs
+│   │   ├── configmap.yaml
+│   │   ├── deployment.yaml
+│   │   └── service.yaml
+│   │
+│   ├── ingress/        # Ingress configs
+│   │   └── ingress.yaml
+│   │
+│   ├── mongo/          # MongoDB configs
+│   │   ├── mongodb-deployment.yaml
+│   │   └── mongodb-service.yaml
+│   │
+│   └── namespace.yaml  # Namespace definition
+├── secrets.yaml        # Additional secrets file (possibly Kubernetes Secret manifest)
+
+├── terraform/                       # Terraform IaC scripts
+│   ├── main.tf                      # Main Terraform configuration
+│   ├── variables.tf                 # Variable definitions
+│   └── outputs.tf                   # Output values
+
+├── scripts/                         # Utility scripts
+│   ├── check.ps1                    # Build script
+│   ├── diagnose.ps1                    # Deployment helper
+│   └── start.ps1 
+├── .gitignore                       # Files and directories to ignore in Git
+├── README.md                        # Main project README
+├── SETUP_INSTRUCTIONS.md           # Step-by-step setup guide
+└── docker-compose.yml              # Docker Compose configuration
+
 
 ```
 
