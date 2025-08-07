@@ -259,13 +259,14 @@ cd server
 Kanflow is equipped with a production-ready DevOps pipeline to automate the full application lifecycle — from code to deployment.
 
 ## 🧩 Pipeline Components
-Tool	Role
-Jenkins	Continuous Integration / Deployment (CI/CD)
-Ansible	Configuration management and provisioning
-Docker	Containerization of frontend/backend apps
-Kubernetes	Container orchestration and scaling
-Helm	Kubernetes deployment templating
-Terraform	Infrastructure provisioning (IaC)
+
+| 🛠️ Tool        | 📌 Role                                                       |
+|----------------|----------------------------------------------------------------|
+| 🧪 Jenkins     | Continuous Integration / Deployment (CI/CD)                   |
+| 🧰 Ansible     | Configuration management and provisioning                     |
+| 🐳 Docker      | Containerization of frontend/backend apps                     |
+| ☸️ Kubernetes  | Container orchestration and scaling                           |
+| 🌍 Terraform   | Infrastructure provisioning (Infrastructure as Code - IaC)    |
 
 
 ## 🔄 Pipeline Flow
