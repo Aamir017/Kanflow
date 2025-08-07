@@ -1,6 +1,8 @@
 # 🚀 Kanflow - Task Management Board
 
-**Kanflow** is a modern, intuitive Kanban-style task management application built with the MERN stack. Streamline your workflow with drag-and-drop functionality, task filtering, and real-time collaboration features.
+**Kanflow** is a modern, intuitive Kanban-style task management application built with the MERN stack, enhanced by a full DevOps CI/CD pipeline using Jenkins, Docker, Kubernetes, Terraform, and Ansible. It offers drag-and-drop task management, filtering, and real-time collaboration, making it ideal for teams who want both productivity and scalable deployment.
+
+
 
 ## ✨ Features
 
