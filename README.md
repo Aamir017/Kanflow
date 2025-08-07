@@ -13,7 +13,7 @@
 
 ### 🔍 Advanced Features
 - **Smart Filtering** - Filter tasks by priority, assignee, and due date
-- **Persistent Storage** - Tasks saved locally with backend synchronization
+- **Persistent Storage** - Persistent storage via MongoDB with real-time backend synchronization
 - **Responsive Design** - Works flawlessly on desktop, tablet, and mobile
 - **Toast Notifications** - Real-time feedback for user actions
 - **Modern UI/UX** - Clean, professional interface with smooth animations
