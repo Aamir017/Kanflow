@@ -210,24 +210,6 @@ k8s/
 - **By Assignee**: Filter tasks assigned to specific team members
 - **By Due Date**: View tasks due within specific timeframes
 
-## 🔧 API Integration
-
-### Current Implementation
-The application currently uses localStorage as a fallback when the backend is unavailable, ensuring uninterrupted workflow even during server maintenance.
-
-### API Endpoints (Planned)
-```
-GET    /api/boards          # Get all boards
-POST   /api/boards          # Create new board
-GET    /api/boards/:id      # Get specific board
-PUT    /api/boards/:id      # Update board
-DELETE /api/boards/:id      # Delete board
-
-GET    /api/tasks           # Get all tasks
-POST   /api/tasks           # Create new task
-PUT    /api/tasks/:id       # Update task
-DELETE /api/tasks/:id       # Delete task
-```
 
 ## 🎨 Customization
 
