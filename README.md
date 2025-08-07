@@ -255,10 +255,10 @@ cd server
 # Configure environment variables on your hosting platform
 # Deploy the server directory
 ```
-### 🔁 CI/CD & DevOps Pipeline
+## 🔁 CI/CD & DevOps Pipeline
 Kanflow is equipped with a production-ready DevOps pipeline to automate the full application lifecycle — from code to deployment.
 
-### 🧩 Pipeline Components
+## 🧩 Pipeline Components
 Tool	Role
 Jenkins	Continuous Integration / Deployment (CI/CD)
 Ansible	Configuration management and provisioning
