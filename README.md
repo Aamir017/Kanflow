@@ -1,4 +1,7 @@
 # 🚀 Kanflow - Task Management Board
+![GitHub License](https://img.shields.io/github/license/Aamir017/kanflow)
+![GitHub Stars](https://img.shields.io/github/stars/Aamir017/kanflow)
+![CI](https://img.shields.io/badge/build-passing-brightgreen)
 
 **Kanflow** is a modern, intuitive Kanban-style task management application built with the MERN stack. Streamline your workflow with drag-and-drop functionality, task filtering, and real-time collaboration features.
 
@@ -293,9 +296,9 @@ Kanflow is equipped with a production-ready DevOps pipeline to automate the full
 
 ## 👨‍💻 Author
 
-**Your Name**
-- LinkedIn: [skaamir10](https://linkedin.com/in/skaamir10)
-- Email: aamir.sk.dev@gmail.com
+**Sk Aamir**
+📧 [aamir.sk.dev@gmail.com](mailto:aamir.sk.dev@gmail.com)  
+🔗 [LinkedIn](https://www.linkedin.com/in/skaamir10)
 
 ## 🙏 Acknowledgments
 
